@@ -7,7 +7,7 @@ import classnames from "classnames";
 import axios from "axios";
 import { API_URL } from "../utils";
 
-// compnent rendered everytime we want to display a task and its status
+// component rendered every time we want to display a task and its status
 export const Task = ({ task, fetchTasks }) => {
     const { id, name, completed } = task;
     const [isComplete, setIsComplete] = useState(completed);
