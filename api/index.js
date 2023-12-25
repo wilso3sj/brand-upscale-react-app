@@ -1,6 +1,7 @@
 import express from "express";
 import serverless from "serverless-http";
-import { fetchTasks, createTasks, updateTasks, deleteTasks } from "./task";
+import { fetchTasks, createTasks, updateTasks, deleteTasks } from "./task.js";
+import cors from "cors";
 
 const app = express();
 const port = 3001;
@@ -36,7 +37,7 @@ app.post('/task', async (req, res) => {
         res.send(response);
 
     } catch (err) {
-        res.status(400).send("Error creating tasks $(err)")
+        res.status(400).send("Error creating tasks $(err)");
     }
 });
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ndoe index",
+    "start": "node index",
     "dev": "DEVELOPMENT=true nodemon index"
   },
   "type": "module",

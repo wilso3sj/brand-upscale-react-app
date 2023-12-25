@@ -4,11 +4,11 @@ import {
     PutCommand, 
     DynamoDBDocumentClient, 
     ScanCommand, 
-    DeleteCommand 
+    DeleteCommand, 
 } from "@aws-sdk/lib-dynamodb";
-import crypto from "crypto"
+import crypto from "crypto";
 
-const client = new DynamoDBClient({ region: "us-east-1"});
+const client = new DynamoDBClient({ region: "us-east-1" });
 const docClient = DynamoDBDocumentClient.from(client);
 
 export const fetchTasks = async () => {
@@ -24,40 +24,40 @@ export const fetchTasks = async () => {
     return response;
 };
 
-export const createTasks = async (name, completed) => {
-    const uuid = crypto.randomUUID()
+export const createTasks = async ({ name, completed }) => {
+    const uuid = crypto.randomUUID();
     //
     const command = new PutCommand({
         TableName: "Tasks",
         Item: {
-            id: "",
+            id: uuid,
             name,
-            completed
-        }
-    })
+            completed,
+        },
+    });
     
     const response = await docClient.send(command);
 
     return response;
 };
 
-export const updateTasks = async (id, name, completed) => {
+export const updateTasks = async ({ id, name, completed }) => {
     //performs fetch all so change when you mod system
     const command = new UpdateCommand({
         TableName: "Tasks",
         Key: {
-            id
+            id,
         },
         ExpressionAttributeNames: {
-            "#name": "name"
+            "#name": "name",
         },
         UpdateExpression: "set #name = :n, completed = :c",
         ExpressionAttributeValues: {
             ":n": name,
-            ":c": completed
+            ":c": completed,
         },
-        ReturnValues: "ALL_NEW"
-    })
+        ReturnValues: "ALL_NEW",
+    });
     
     const response = await docClient.send(command);
 
@@ -71,7 +71,7 @@ export const deleteTasks = async (id) => {
         Key: {
             id
         }
-    })
+    });
     
     const response = await docClient.send(command);
 

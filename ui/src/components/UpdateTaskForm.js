@@ -9,13 +9,12 @@ export const UpdateTaskForm = ({
     fetchTasks, 
     isDialogOpen, 
     setIsDialogOpen, 
-    task 
+    task,
 }) => {
     const { id, completed } = task;
     const [taskName, setTaskName] = useState("");
 
     const handleUpdateTaskName = async () => {
-
     try {
         await axios.put(API_URL, {
             id,
@@ -29,11 +28,12 @@ export const UpdateTaskForm = ({
     } catch(err) {
         console.log(err);
     }
-}
+};
 
-    return <Dialog open={isDialogOpen}>
+    return (
+        <Dialog open={isDialogOpen}>
         <DialogTitle>Edit Task</DialogTitle>
-        <div clasName="dialog">
+        <div className="dialog">
             <TextField 
                 size="small" 
                 label="Task" 
@@ -52,4 +52,5 @@ export const UpdateTaskForm = ({
         </div>
 
     </Dialog>
+    );       
 };
