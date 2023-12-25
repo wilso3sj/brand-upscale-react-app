@@ -24,7 +24,7 @@ app.get('/task', async (req, res) => {
 
         res.send(tasks.Items);
     } catch (err) {
-        res.status(400).send("Error fetching tasks $(err)");
+        res.status(400).send(`Error fetching tasks: ${err}`);
     }
 });
 
@@ -37,7 +37,7 @@ app.post('/task', async (req, res) => {
         res.send(response);
 
     } catch (err) {
-        res.status(400).send("Error creating tasks $(err)");
+        res.status(400).send(`Error fetching tasks: ${err}`);
     }
 });
 
@@ -49,7 +49,7 @@ app.put('/task', async (req, res) => {
 
         res.send(response);
     } catch (err) {
-        res.status(400).send("Error updating tasks $(err)");
+        res.status(400).send(`Error fetching tasks: ${err}`);
     }
 });
 
@@ -61,13 +61,13 @@ app.delete('/task/:id', async (req, res) => {
 
         res.send(response);
     } catch (err) {
-        res.status(400).send("Error deleting tasks $(err)");
+        res.status(400).send(`Error fetching tasks: ${err}`);
     }
 });
 
 if (process.env.DEVELOPMENT) {
     app.listen(port, () => {
-        console.log('example app listening on port ${port}');
+        console.log(`example app listening on port ${port}`);
     });
 }
 
