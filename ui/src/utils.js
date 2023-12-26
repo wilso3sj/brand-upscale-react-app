@@ -1,1 +1,1 @@
-export const API_URL = "https://y76tdohvwkqtjue37d2nzj5mjq0lphqj.lambda-url.us-east-1.on.aws/task";
+export const API_URL = "https://www.brandupscale.com/task";
